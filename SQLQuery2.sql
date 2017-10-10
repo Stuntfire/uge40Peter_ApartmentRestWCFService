@@ -1,0 +1,2 @@
+﻿SELECT * FROM Apartment
+WHERE Price BETWEEN 3000 AND 5000;

@@ -30,7 +30,7 @@ namespace uge40Peter_ApartmentRestWCFService
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "apartment/postal/{postalcode}")]
-        IList<Apartment> GetAllApartmentByPostalCode(string postalCode);
+        IList<Apartment> GetAllApartmentByPostalCode(string postalcode);
 
         //henter specifik apartment ud fra by
         [OperationContract]
@@ -56,12 +56,29 @@ namespace uge40Peter_ApartmentRestWCFService
             UriTemplate = "apartment/{id}")]
         void DeleteApartment(string id);
 
-        //updaterer en apartment ud fra id
+        //opdaterer en apartment
         [OperationContract]
         [WebInvoke(Method = "PUT",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "apartment/{id}")]
-        void UpdateApartment(string id, Apartment apartment);
+            UriTemplate = "apartment/")]
+        void UpdateApartment(Apartment apartment);
+
+        ////søg en apartment med/uden opvaske- og vaskemaskine
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "apartment/machines/{washingMachine},{dishwasher}")]
+        IList<Apartment> SearchMachinesApartment(string washingMachine, string dishwasher);
+
+
+        //søg en apartment ud fra en min. og maks. pris
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "apartment/price/{minPrice},{maxPrice}")]
+        IList<Apartment> SearchPriceApartment(string minPrice, string maxPrice);
     }
 }

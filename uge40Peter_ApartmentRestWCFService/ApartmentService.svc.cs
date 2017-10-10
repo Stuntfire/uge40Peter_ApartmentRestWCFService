@@ -160,7 +160,7 @@ namespace uge40Peter_ApartmentRestWCFService
             }
         }
 
-        public void UpdateApartment(string id, Apartment apartment)
+        public void UpdateApartment(Apartment apartment)
         {
             string updateApartmet = "UPDATE Apartment SET Price=@price, Location=@location, Postalcode=@postalcode, Size=@size, NoRoom=@noRoom, WashingMachine=@washingMachine, Dishwasher=@dishwasher WHERE Id=@id";
 
@@ -180,6 +180,77 @@ namespace uge40Peter_ApartmentRestWCFService
                 command.Parameters.AddWithValue("@dishwasher", apartment.Dishwasher);
 
                 command.ExecuteNonQuery();
+            }
+        }
+
+        public IList<Apartment> SearchMachinesApartment(string washingMachine, string dishwasher)
+        {
+            List<Apartment> apartmentsList = new List<Apartment>();
+
+            string selectAllApartments = "SELECT * FROM Apartment WHERE WashingMachine=@washingMachine AND Dishwasher=@dishwasher";
+
+            using (SqlConnection sqlConnection = new SqlConnection(databaseString))
+            {
+                sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand(selectAllApartments, sqlConnection);
+
+                command.Parameters.AddWithValue("@washingMachine", washingMachine);
+                command.Parameters.AddWithValue("@dishwasher", dishwasher);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    apartmentsList.Add(new Apartment()
+                    {
+                        Id = reader.GetInt32(0),
+                        Price = reader.GetInt32(1),
+                        Location = reader.GetString(2),
+                        Postalcode = reader.GetInt32(3),
+                        Size = reader.GetInt32(4),
+                        NoRoom = reader.GetInt32(5),
+                        WashingMachine = reader.GetBoolean(6),
+                        Dishwasher = reader.GetBoolean(7),
+                    });
+                }
+                return apartmentsList;
+            }
+        }
+
+
+        public IList<Apartment> SearchPriceApartment(string minPrice, string maxPrice)
+        {
+            List<Apartment> apartmentsList = new List<Apartment>();
+
+            string selectAllApartments = "SELECT * FROM Apartment WHERE Price BETWEEN @minPrice AND @maxPrice";
+
+            using (SqlConnection sqlConnection = new SqlConnection(databaseString))
+            {
+                sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand(selectAllApartments, sqlConnection);
+
+                command.Parameters.AddWithValue("@minPrice", minPrice);
+                command.Parameters.AddWithValue("@maxPrice", maxPrice);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    apartmentsList.Add(new Apartment()
+                    {
+                        Id = reader.GetInt32(0),
+                        Price = reader.GetInt32(1),
+                        Location = reader.GetString(2),
+                        Postalcode = reader.GetInt32(3),
+                        Size = reader.GetInt32(4),
+                        NoRoom = reader.GetInt32(5),
+                        WashingMachine = reader.GetBoolean(6),
+                        Dishwasher = reader.GetBoolean(7),
+                    });
+                }
+                return apartmentsList;
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace uge40Peter_ApartmentRestWCFService
@@ -14,7 +15,7 @@ namespace uge40Peter_ApartmentRestWCFService
     public class Apartment
     {
         private int _id;
-
+        [DataMember]
         public int Id
         {
             get { return _id; }
@@ -22,7 +23,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private int _price;
-
+        [DataMember]
         public int Price
         {
             get { return _price; }
@@ -30,7 +31,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private string _location;
-
+        [DataMember]
         public string Location
         {
             get { return _location; }
@@ -38,7 +39,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private int _postalcode;
-
+        [DataMember]
         public int Postalcode
         {
             get { return _postalcode; }
@@ -46,7 +47,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private int _size;
-
+        [DataMember]
         public int Size
         {
             get { return _size; }
@@ -54,7 +55,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private int _noRoom;
-
+        [DataMember]
         public int NoRoom
         {
             get { return _noRoom; }
@@ -62,7 +63,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private bool _washingMachine;
-
+        [DataMember]
         public bool WashingMachine
         {
             get { return _washingMachine; }
@@ -70,7 +71,7 @@ namespace uge40Peter_ApartmentRestWCFService
         }
 
         private bool _dishwasher;
-
+        [DataMember]
         public bool Dishwasher
         {
             get { return _dishwasher; }
