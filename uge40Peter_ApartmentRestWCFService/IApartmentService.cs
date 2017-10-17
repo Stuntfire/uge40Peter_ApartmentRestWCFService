@@ -45,7 +45,7 @@ namespace uge40Peter_ApartmentRestWCFService
         [WebInvoke(Method = "POST",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "apartment/")]
+            UriTemplate = "apartment/post/")]
         void CreateApartment(Apartment apartment);
 
         //sletter en apartment ud fra id
@@ -53,7 +53,7 @@ namespace uge40Peter_ApartmentRestWCFService
         [WebInvoke(Method = "DELETE",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "apartment/{id}")]
+            UriTemplate = "apartment/delete/{id}")]
         void DeleteApartment(string id);
 
         //opdaterer en apartment
@@ -61,7 +61,7 @@ namespace uge40Peter_ApartmentRestWCFService
         [WebInvoke(Method = "PUT",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "apartment/")]
+            UriTemplate = "apartment/put/")]
         void UpdateApartment(Apartment apartment);
 
         ////søg en apartment med/uden opvaske- og vaskemaskine
